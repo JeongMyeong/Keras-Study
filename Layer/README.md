@@ -6,7 +6,7 @@ import tensorflow.keras.layers
 - dense layer는 Hidden Layer 혹은 Output Layer로 쓰인다.
 #### arguments
 - units - 입력데이터의 차원을 넣어주면 된다.
-- activation - 활성화 함수로 [softmax, relu, sigmoid] 등이 있다. [자세히](https://keras.io/activations/](https://keras.io/activations/)
+- activation - 활성화 함수로 [softmax, relu, sigmoid] 등이 있다. [자세히](https://keras.io/activations/)
 
 |Problem| activation |  loss func|
 |--|--|--|
