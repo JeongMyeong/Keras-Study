@@ -1,7 +1,7 @@
 # Util
 
 
-## Model Save
+## Model 저장하기
 ```{Python}
 model_json = model.to_json()
 path='/'                                                                      # 경로 설정
@@ -12,7 +12,7 @@ with open('{}+{}.json'.format(path, name), "w") as json_file:     # json파일 �
     print('Saved')
 ```
 
-## Model Load
+## Model 불러오기
 - 저장된 *.h5 과  *.json 파일을 사용하여 로드한다.
 - !중요! 모델은 로드한 후 꼭 compile을 하여야한다.
 ```
@@ -26,4 +26,11 @@ def model_load(model_path):
     print("Loaded")
     return loaded_model # 로드 후 compile은 필수
 
+```
+
+## 모델의 요약 출력
+- model에 layer들이 어떻게 연결되어있고 shape가 어떻게 변화 되는지 출력.
+- layer의 이름을 설정해주지 않으면 layer 이름은 임의로 설정되어 출력된다.
+```
+model.summary()
 ```
