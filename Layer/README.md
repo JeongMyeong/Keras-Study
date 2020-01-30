@@ -23,7 +23,7 @@ model.add(Dense(20, activation='softmax'))      # Dense layer의 output 다중 �
 model.add(Dense(1))                             # Dense layer의 output 회귀
 ```
 
-# LSTM
+# [LSTM](https://keras.io/layers/recurrent/#lstm)
 - Long Short-Term Memory layer
 - RNN 의 vanishing gradient problem을 극복하기 위해 고안된 layer
 - RNN의 Hidden State에 Cell State를 추가한 구조.
