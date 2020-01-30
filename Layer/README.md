@@ -7,6 +7,7 @@ import tensorflow.keras.layers
 #### arguments
 - units - 입력데이터의 차원을 넣어주면 된다.
 - activation - 활성화 함수로 [softmax, relu, sigmoid] 등이 있다. [자세히](https://keras.io/activations/)
+- kernel_initializer - 초기값 설정. 기본값은 'glorot_uniform' (Xavier)로 되어있다.  activation을 'relu'로 사용시 초기값을  'he_uniform' 으로 설정하는 것도 좋은 방법이라고 한다.
 
 |Problem| activation |  loss func|
 |--                 |--         |--|
