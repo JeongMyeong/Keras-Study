@@ -11,9 +11,9 @@ import tensorflow.keras.layers
 |Problem| activation |  loss func|
 |--                 |--         |--|
 |이진분류| sigmoid | binary_crossentropy |
-|다중분류|softmax|aa|
+|다중분류|softmax|categorical_crossentropy or sparse_categorical_crossentropy|
 |회귀| linear | mse|
-|qq|qq|qw|
+
 
 ```{python}
 from tensorflow.keras.layers import Dense  		# Dense layer를 import
