@@ -9,14 +9,14 @@ import tensorflow.keras.layers
 - activation - 활성화 함수로 [softmax, relu, sigmoid] 등이 있다. [자세히](https://keras.io/activations/)
 
 |Problem| activation |  loss func|
-|--|--|--|
-|이진분류| sigmoid|binary_crossentropy |
-|다중분류| softmax | categorical_crossentropy or sparse_categorical_crossentropy |
+|--                 |--         |--|
+|이진분류| sigmoid | binary_crossentropy |
+|다중분류|softmax|aa|
 |회귀| linear | mse|
 
 
 
-```
+```{python}
 from tensorflow.keras.layers import Dense  		# Dense layer를 import
 model.add(Dense(64, activation='relu'))          # 흔히 쓰는 Dense layer의 hidden layer
 model.add(Dense(1, activation='sigmoid'))       # Dense layer의 output 이진분류
