@@ -34,3 +34,20 @@ def model_load(model_path):
 ```
 model.summary()
 ```
+
+## EarlyStopping - 학습 조기 종료
+- keras model의 fit의 callbacs parameter로 줄 수 있다.
+- 학습이 어느정도 되었고 성능에 진전이 없을 때 오버피팅을 방지하기 위해 모든 Epoch을 돌리지 않고 조기 종료를 시킨다.
+- parameters
+    - monitor : 조기 종료의 기준 데이터
+    - mode : 조기 종료 기준 데이터를 최대로 할지 최소로 할지. loss가 최소가 되어야 하는건 min 그 반대는 max
+    - patience : 성능이 증가하지 않는다고 곧 바로 멈추는건 효과적이지 않다. patience는 이를 막아주는 역할을 하는데 epoch을 얼만큼 더 허용하고 참을것인지 정의한다. 
+    - baseline : monitor하고 있는 값이 특정 값에 도달했을 때 멈춘다.
+    - restore_best_weights : 조기종료 후 가장 최선의 weights로 model을 선택
+    - verbose : 출력 ON/OFF
+```
+from tensorflow.keras.callbacks import EarlyStopping                                                  # import
+es = EarlyStopping(monitor='val_loss',mode='min', verbose=1, patience=10, restore_best_weights=True)  # ex1
+es = EarlyStopping(monitor='val_loss',mode='min', baseline=0.6 restore_best_weights=True)             # ex2
+model.fit(X_train, y_train, epochs=100, validation_data=(X_valid, y_valid), callbacks=[es])           # 모델을 훈련시킬 때 callbacks 파라미터에 
+```
