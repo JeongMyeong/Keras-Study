@@ -36,7 +36,7 @@ model.summary()
 ```
 
 ## EarlyStopping - 학습 조기 종료
-- keras model의 fit의 callbacs parameter로 줄 수 있다.
+- keras model의 fit의 callbacks parameter로 줄 수 있다.
 - 학습이 어느정도 되었고 성능에 진전이 없을 때 오버피팅을 방지하기 위해 모든 Epoch을 돌리지 않고 조기 종료를 시킨다.
 - parameters
     - monitor : 조기 종료의 기준 데이터
@@ -51,3 +51,18 @@ es = EarlyStopping(monitor='val_loss',mode='min', verbose=1, patience=10, restor
 es = EarlyStopping(monitor='val_loss',mode='min', baseline=0.6 restore_best_weights=True)             # ex2
 model.fit(X_train, y_train, epochs=100, validation_data=(X_valid, y_valid), callbacks=[es])           # 모델을 훈련시킬 때 callbacks 파라미터에 
 ```
+
+## class_weight
+- keras model 의 fit 의 class_weight 파라미터 값으로 설정할 수 있다.
+- binary or multiclass 분류 문제에 적용할 수 있다.
+- imbalanced 한 target 값에 대해 좀 더 가중치를 주고 학습시킬 수 있다.
+- 다중분류보다는 이진분류에 좀 더 효과적일 것이라 생각된다.
+- 정확도는 약간 상승하는 것을 볼  loss값은 떨어지지 않고 오히려 올라가는 경우가 발생할 수도 있다.
+- 분류의 정확도 보다 loss를 줄이는데는 크게 효과적이지 않은것으로 생각된다.
+```
+class_weight = {0: 40,
+                1: 60
+                }
+model.fit(X_train, Y_train, epochs=10, batch_size=32, class_weight=class_weight)
+```
+
