@@ -3,13 +3,13 @@
 
 ## Model 저장하기
 ```{Python}
-model_json = model.to_json()
-path='/'                                                                      # 경로 설정
-name='keras_model'                                                     # 저장할 이름 설정
-with open('{}+{}.json'.format(path, name), "w") as json_file:     # json파일 생성 및 weight 값 저장
-    json_file.write(model_json)
-    model.save_weights('{}+{}.json'.format(path, name))
-    print('Saved')
+def model_save(MODEL, name):
+    model_json = MODEL.to_json()
+    with open("{}.json".format(name), "w") as json_file : 
+        json_file.write(model_json)
+    
+    MODEL.save_weights("{}.h5".format(name))
+    print("Saved model")
 ```
 
 ## Model 불러오기
