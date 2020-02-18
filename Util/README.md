@@ -59,10 +59,11 @@ model.fit(X_train, y_train, epochs=100, validation_data=(X_valid, y_valid), call
 - 다중분류보다는 이진분류에 좀 더 효과적일 것이라 생각된다.
 - 정확도는 약간 상승하는 것을 볼  loss값은 떨어지지 않고 오히려 올라가는 경우가 발생할 수도 있다.
 - 분류의 정확도 보다 loss를 줄이는데는 크게 효과적이지 않은것으로 생각된다.
-```
+```{python}
 class_weight = {0: 40,
                 1: 60
                 }
 model.fit(X_train, Y_train, epochs=10, batch_size=32, class_weight=class_weight)
 ```
 
+  
