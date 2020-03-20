@@ -11,6 +11,19 @@ def model_save(MODEL, name):
     MODEL.save_weights("{}.h5".format(name))
     print("Saved model")
 ```
+## Epoch 마다 Model 저장하기
+- filepath에 epoch, val_accuracy, val_loss 등을 입력해주면 해당 epoch의 값들로 저장할 수 있다.
+- save_best_only : True or False
+    - True인 경우 모델 가중치만 저장되고 False인 경우 전체 모델이 저장됨.
+- period : 몇 Epoch 마다 저장할 것인지.
+```
+# https://keras.io/ko/callbacks/
+
+cp = ModelCheckpoint("epoch({epoch:02d})_accuracy({val_accuracy:.2f}).hdf5", monitor='loss', verbose=1, save_best_only=True, mode='auto', period=1)
+model.fit(X_train, y_train, validation_data=[X_valid, y_valid] ,epochs=10, batch_size=64, callbacks=[cp])
+
+```
+
 
 ## Model 불러오기
 - 저장된 *.h5 과  *.json 파일을 사용하여 로드한다.
