@@ -79,4 +79,12 @@ class_weight = {0: 40,
 model.fit(X_train, Y_train, epochs=10, batch_size=32, class_weight=class_weight)
 ```
 
-  
+ 
+ 
+ # Python Util
+ 
+ ## list 원소 count
+ ```
+from collections import Counter
+Counter(li).most_common(20)         # count 상위 2
+ ```
