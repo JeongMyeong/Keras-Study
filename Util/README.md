@@ -88,3 +88,17 @@ model.fit(X_train, Y_train, epochs=10, batch_size=32, class_weight=class_weight)
 from collections import Counter
 Counter(li).most_common(20)         # count 상위 2
  ```
+## regex 정규표현식 기본 <[참고자료](http://pythonstudy.xyz/python/article/401-%EC%A0%95%EA%B7%9C-%ED%91%9C%ED%98%84%EC%8B%9D-Regex)>
+```
+import re
+text = "안녕하세요!@#$% Hello.123456"
+kor = re.sub('[^가-힣]', '', text)        # 한글만.
+eng = re.sub('[^A-Za-z]', '', text)        # 영어만
+num = re.sub('[^0-9]', '', text)        # 숫자만
+
+print(kor)
+print(eng)
+print(num)
+
+# 여러 regex를 조합하여 (영어,숫자)만 이런식으로 조합가능
+```
