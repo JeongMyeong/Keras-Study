@@ -101,4 +101,8 @@ print(eng)
 print(num)
 
 # 여러 regex를 조합하여 (영어,숫자)만 이런식으로 조합가능
+# 원하는 글자만 추출할 때
+my = re.sub('[^안하!o36]', '', text)        # 숫자만
+print(my)
+
 ```
