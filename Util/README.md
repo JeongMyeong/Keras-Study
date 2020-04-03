@@ -64,6 +64,23 @@ es = EarlyStopping(monitor='val_loss',mode='min', verbose=1, patience=10, restor
 es = EarlyStopping(monitor='val_loss',mode='min', baseline=0.6 restore_best_weights=True)             # ex2
 model.fit(X_train, y_train, epochs=100, validation_data=(X_valid, y_valid), callbacks=[es])           # 모델을 훈련시킬 때 callbacks 파라미터에 
 ```
+## Custom Activation(gelu) [gelu activation MNIST Performace](https://data-newbie.tistory.com/376)
+- 해결하고자 하는 문제에 따라 성능이 다를 수 있지만 MNIST에서 elu, relu 활성화 함수보다 빠르게 수렴하는 모습을 볼 수 있다.
+- 학습 횟수가 많아질수록 같은 수준으로 떨어지기는 한다.
+- gelu, elu, relu 모두 사용해보고 좋은 활성화 함수를 쓰면된다.
+
+```
+from keras.utils.generic_utils import get_custom_objects
+import tensorflow as tf
+class Gelu(Activation):
+    def __init__(self, activation, **kwargs):
+        super(Gelu, self).__init__(activation, **kwargs)
+        self.__name__='gelu'
+def gelu(x):
+    return 0.5 * x * (1 + tf.tanh(tf.sqrt(2 / np.pi) * (x + 0.044715 * tf.pow(x, 3))))
+get_custom_objects().update({'gelu': Gelu(gelu)})
+```
+
 
 ## class_weight
 - keras model 의 fit 의 class_weight 파라미터 값으로 설정할 수 있다.
