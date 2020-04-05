@@ -96,6 +96,15 @@ class_weight = {0: 40,
 model.fit(X_train, Y_train, epochs=10, batch_size=32, class_weight=class_weight)
 ```
 
+# Using Multi GPU
+- GPU 작업을 분산 시킴
+- gpus는 2 이상
+```
+from keras.utils import multi_gpu_model
+model = Model(INPUT, OUTPUT)
+parallel_model = multi_gpu_model(model, gpus=N)   # N= gpu 갯수
+parallel_model.compile(loss='categorical_crossentropy', optimizer='adam')
+```
  
  
  # Python Util
