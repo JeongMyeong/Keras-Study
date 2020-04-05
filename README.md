@@ -20,6 +20,7 @@
 - EarlyStopping(조기종료)
 - Custom Activation(Gelu)
 - model fit class_weight
+- Using Multi GPU
 - Python Util
   - list 원소 count
   - regex 정규표현식
