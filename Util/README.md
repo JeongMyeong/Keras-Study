@@ -18,7 +18,7 @@ def model_save(MODEL, name):
 - period : 몇 Epoch 마다 저장할 것인지.
 ```
 # https://keras.io/ko/callbacks/
-
+from tensorflow.keras.callbacks import ModelCheckpoint    
 cp = ModelCheckpoint("epoch({epoch:02d})_accuracy({val_accuracy:.2f}).hdf5", monitor='loss', verbose=1, save_best_only=True, mode='auto', period=1)
 model.fit(X_train, y_train, validation_data=[X_valid, y_valid] ,epochs=10, batch_size=64, callbacks=[cp])
 
