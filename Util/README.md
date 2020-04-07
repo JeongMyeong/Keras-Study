@@ -96,16 +96,21 @@ class_weight = {0: 40,
 model.fit(X_train, Y_train, epochs=10, batch_size=32, class_weight=class_weight)
 ```
 
-# Using Multi GPU
+## Using Multi GPU
 - GPU 작업을 분산 시킴
 - gpus는 2 이상
 ```
-from keras.utils import multi_gpu_model
+from tensorflow.keras.utils import multi_gpu_model
 model = Model(INPUT, OUTPUT)
 parallel_model = multi_gpu_model(model, gpus=N)   # N= gpu 갯수
 parallel_model.compile(loss='categorical_crossentropy', optimizer='adam')
 ```
- 
+- 만약 터미널에서 ```nvidia-smi``` 를 통해 gpu 하나만 학습하고 있는것이 확인되면 밑의 두 줄을 추가하면된다.
+- tf2.0에서는 eager mode가 default로 되어있는데, multi GPU를 위한 분산 strategy를 위해서는 disable해주어야 된다고한다.[[ref]](https://lv99.tistory.com/12)
+```
+import tensorflow
+tensorflow.compat.v1.disable_eager_execution()
+```
  
  # Python Util
  
