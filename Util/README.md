@@ -109,6 +109,7 @@ with strategy.scope():
 - 밑의 방법을 사용 했을 때 2020.04.01 부터 위 방법으로 사용하라고 한다.
 - [tensorflow 분산 훈련 문서](https://www.tensorflow.org/guide/distributed_training?hl=ko)
 - [참고 블로그](https://hwiyong.tistory.com/96)
+
 ~- GPU 작업을 분산 시킴~
 ~- gpus는 2 이상~
 ```
@@ -120,7 +121,6 @@ parallel_model.compile(loss='categorical_crossentropy', optimizer='adam')
 ~- 만약 터미널에서 ```nvidia-smi``` 를 통해 gpu 하나만 학습하고 있는것이 확인되면 밑의 두 줄을 추가하면된다.~
 ~- tf2.0에서는 eager mode가 default로 되어있는데, multi GPU를 위한 분산 strategy를 위해서는 disable해주어야 된다고한다.[[ref]](https://lv99.tistory.com/12)~
 ```
-# (1)
 import tensorflow
 tensorflow.compat.v1.disable_eager_execution()
 ```
