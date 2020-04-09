@@ -148,5 +148,27 @@ print(num)
 # 원하는 글자만 추출할 때
 my = re.sub('[^안하!o36]', '', text)        # 숫자만
 print(my)
+```
+
+## multiprocessing 으로 더 빠르게 연산(ref)[https://niceman.tistory.com/145]
+- 
+```
+from multiprocessing import Pool
+
+# 리스트에 있는 값들을 하나씩 받아 연산을 수행하고 return 하는 함수
+def run(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibo(n-1) + fibo(n-2)
+   
+
+works = [k for k in range(10,15)]          # 함수에 넣어 수행할 값들의 리스트.
+pool = Pool(processes=3) #  processes 에 적은 갯수만큼 동시에 연산됨.
+result = pool.map(run, works) # run에 리스트에 있는 일을 하나씩 던져 줌. 이 때 processes에 적힌 파라미터 값의 수만큼 동시에 수행.
+# result 의 type은 리스트.
 
 ```
+
