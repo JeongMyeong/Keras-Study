@@ -98,6 +98,7 @@ model.fit(X_train, Y_train, epochs=10, batch_size=32, class_weight=class_weight)
 
 ## Using Multi GPU
 - tensorflow 2.x 버전에서는 밑의 방법으로 multi gpu를 사용하면 된다.
+- multi gpu로 선언되었을 때는 predict할 때 gpu 갯수 적은 만큼 갯수 만족 시켜야 한다 ? 
 ```
 import tensorflow tf
 strategy = tf.distribute.MirroredStrategy(devices=["/gpu:0", "/gpu:1"])    # 사용하는 gpu 번호를 지정할 수 있음.
