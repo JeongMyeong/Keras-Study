@@ -152,7 +152,9 @@ print(my)
 ```
 
 ## multiprocessing 으로 더 빠르게 연산(ref)[https://niceman.tistory.com/145]
-- 
+- process의 갯수가 늘어남에 따라 빠르게 연산이 될 줄알았는데 그렇지 않음. --> 무슨 문제인지 모르겠음.
+- memory를 많이 잡아먹는다 ? --> 무슨 문제인지 모르겠음.
+
 ```
 from multiprocessing import Pool
 
