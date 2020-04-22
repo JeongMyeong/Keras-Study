@@ -1,6 +1,5 @@
 # Util
 
-
 ## Model 저장하기
 ```{Python}
 def model_save(MODEL, name):
@@ -125,7 +124,19 @@ parallel_model.compile(loss='categorical_crossentropy', optimizer='adam')
 import tensorflow
 tensorflow.compat.v1.disable_eager_execution()
 ```
- 
+
+## LearningRate reduce [TF](https://www.tensorflow.org/api_docs/python/tf/keras/callbacks/ReduceLROnPlateau)
+- monitor 중인 값이 patience 동안 개선이 없으면 lr * factor 로 leraning rate를 감소시킨다-
+- 이는 learning rate를 줄여줌으로써 Local Minima를 빠져나올 수 있는 방법 중 하나.
+```
+reduce_lr = tf.keras.callbacks.ReduceLROnPlateau(
+    monitor='val_loss', factor=0.1, patience=10, verbose=0, mode='auto',
+    min_delta=0.0001, cooldown=0, min_lr=0, **kwargs
+)
+model.fit(X, y, callbacks=[reduce_lr])
+```
+- 
+
  # Python Util
  
  ## list 원소 count
