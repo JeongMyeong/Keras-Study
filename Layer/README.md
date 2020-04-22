@@ -24,7 +24,7 @@ model.add(Dense(20, activation='softmax'))      # Dense layer의 output 다중 �
 model.add(Dense(1))                             # Dense layer의 output 회귀
 ```
 
-# [LSTM](https://keras.io/layers/recurrent/#lstm)
+## [LSTM](https://keras.io/layers/recurrent/#lstm)
 - Long Short-Term Memory layer
 - RNN 의 vanishing gradient problem을 극복하기 위해 고안된 layer
 - RNN의 Hidden State에 Cell State를 추가한 구조.
@@ -43,3 +43,9 @@ model.add(LSTM(128, activation='relu', return_sequences=True))
 model.add(LSTM(128, batch_input_shape=(32, 10, 100), activation='relu', stateful=True))  
 # 파라미터 값중 stateful을 True로 하면 현재 샘플의 학습 상태가 다음 샘플의 초기상태로 전달 된다는것을 의미한다. 상태유지 모드에서는 batch_input_shape=(배치크기,타임 스텝, 속성)으로 설정해야한다.
 ```
+
+## [PReLU](https://www.tensorflow.org/api_docs/python/tf/keras/layers/PReLU)
+- Parametric ReLU
+- ReLU Activation Function을 개선한 것
+- ReLU에서는 음수 값을 모두 0으로 만들고, LeakyReLU는 음수에서도 작은 값의 gradient를 가진다.(음의 값에 대해서도 가능성을 열어둔다)
+- PReLU는 음수에 대한 gradient를 변수로 두고 학습을 통해 값을 update 시킴
