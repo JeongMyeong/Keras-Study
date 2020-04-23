@@ -140,7 +140,7 @@ model.fit(X, y, callbacks=[reduce_lr])
 - batch 만큼의 데이터를 불러오면서 전처리가 가능하다.
 - 전처리 하는 과정이 오래 걸린다면 훈련하는데 속도도 더딜수도 있음.
 - numpy array 연산 경우에는 전체 데이터를 전처리 한 후의 경우와 비슷한 속도를 경험하였음.
-
+- [참고자료](https://www.soscon.net/content/data/commu/1_Day1_1600.pdf) tf keras에서 Generator를 사용하는  방법들이 정리되어 있음.
 ```
 def generator(x_data, y_data, batch_size):
     size = len(x_data)                                  # 데이터 전체 크기
