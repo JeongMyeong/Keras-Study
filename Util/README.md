@@ -135,7 +135,35 @@ reduce_lr = tf.keras.callbacks.ReduceLROnPlateau(
 )
 model.fit(X, y, callbacks=[reduce_lr])
 ```
-- 
+## 훈련시 generator 사용
+- 메모리 관리면에서 효율적이다.
+- batch 만큼의 데이터를 불러오면서 전처리가 가능하다.
+- 전처리 하는 과정이 오래 걸린다면 훈련하는데 속도도 더딜수도 있음.
+- numpy array 연산 경우에는 전체 데이터를 전처리 한 후의 경우와 비슷한 속도를 경험하였음.
+
+```
+def generator(x_data, y_data, batch_size):
+    size = len(x_data)                                  # 데이터 전체 크기
+    while True:
+        np.random.seed(42)                              # random seed를 고정
+        idx = np.random.permutation(size)               # 입력되는 데이터를 섞음
+        x_data = x_data[idx]
+        y_data = y_data[idx]
+        
+        for i in range(size//batch_size):               # 배치사이즈 만큼 데이터를 빼온다.
+            x_batch = x_data[i*batch_size: (i+1)*batch_size]
+            y_batch = y_data[i*batch_size: (i+1)*batch_size]
+            
+            yield x_batch, y_batch
+            
+train_generator = generator(X, y, batch_size)
+
+# 그냥 train_generator를 입력해주게 되면 훈련을 할 수 있음.
+model.fit(train_generator, epochs=10, steps_per_epoch=len(X)//batch_size)
+
+```
+
+
 
  # Python Util
  
