@@ -214,3 +214,17 @@ result = pool.map(run, works) # run에 리스트에 있는 일을 하나씩 던�
 
 ```
 
+## Optimizer
+
+- # optimizer poly
+```
+decay_st = (len(X)//batch_size+1)*epochs
+poly_sche = tf.keras.optimizers.schedules.PolynomialDecay(0.001, decay_st, end_learning_rate=1e-6, power=0.9)
+opt_poly = tf.keras.optimizers.Adam(poly_sche)
+```
+```
+- # optimizer cosR
+cosine_restarts_decay_step = ((((len(X)//batch_size)+1)*epochs)//7)+1
+cosine_restarts = tf.keras.experimental.CosineDecayRestarts(0.001, cosine_restarts_decay_step, t_mul=2.0, m_mul=0.9, alpha=0,name=None)
+opt_cosr = tf.keras.optimizers.Adam(cosine_restarts)
+```
