@@ -25,4 +25,6 @@
   - list 원소 count
   - regex 정규표현식
   - multiprocessing 으로 더 빠르게 연산
-  
+- optimizer
+  - poly
+  - cosine restarts
