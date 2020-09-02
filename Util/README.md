@@ -135,7 +135,7 @@ reduce_lr = tf.keras.callbacks.ReduceLROnPlateau(
 )
 model.fit(X, y, callbacks=[reduce_lr])
 ```
-## 훈련시 generator 사용
+## 훈련시 custom generator 사용
 - 메모리 관리면에서 효율적이다.
 - batch 만큼의 데이터를 불러오면서 전처리가 가능하다.
 - 전처리 하는 과정이 오래 걸린다면 훈련하는데 속도도 더딜수도 있음.
@@ -161,6 +161,39 @@ train_generator = generator(X, y, batch_size)
 # 그냥 train_generator를 입력해주게 되면 훈련을 할 수 있음.
 model.fit(train_generator, epochs=10, steps_per_epoch=len(X)//batch_size)
 
+```
+## multi-input or output 훈련시 custom generator 사용
+- multi-input 혹은 multi-output 시 generator yield(return?) 부분에서 모델의 입력처럼 맞춰줘야 정상적으로 작동함 
+```
+def generator(x_data, y_data, batch_size):
+    x_data = np.array(x_data)                           
+    y_data = np.array(y_data)
+    
+    
+    size = len(x_data)                                 # 데이터 전체 크기
+    while True:
+        np.random.seed(42)                              # random seed를 고정
+        idx = np.random.permutation(size)               # 입력되는 데이터를 섞음
+        x_data = x_data[idx]
+        y_data = y_data[idx]
+        for i in range(size//batch_size):               # 배치사이즈 만큼 데이터를 빼온다.
+            x_batch = x_data[i*batch_size: (i+1)*batch_size]
+            y_batch = y_data[i*batch_size: (i+1)*batch_size]
+            yield [x_batch[0], x_batch[1]], np.array(y_batch)
+```
+## Optimizer
+
+- #### optimizer poly
+```
+decay_st = (len(X)//batch_size+1)*epochs
+poly_sche = tf.keras.optimizers.schedules.PolynomialDecay(0.001, decay_st, end_learning_rate=1e-6, power=0.9)
+opt_poly = tf.keras.optimizers.Adam(poly_sche)
+```
+- #### optimizer cosR
+```
+cosine_restarts_decay_step = ((((len(X)//batch_size)+1)*epochs)//7)+1
+cosine_restarts = tf.keras.experimental.CosineDecayRestarts(0.001, cosine_restarts_decay_step, t_mul=2.0, m_mul=0.9, alpha=0,name=None)
+opt_cosr = tf.keras.optimizers.Adam(cosine_restarts)
 ```
 
 
@@ -214,17 +247,4 @@ result = pool.map(run, works) # run에 리스트에 있는 일을 하나씩 던�
 
 ```
 
-## Optimizer
 
-- #### optimizer poly
-```
-decay_st = (len(X)//batch_size+1)*epochs
-poly_sche = tf.keras.optimizers.schedules.PolynomialDecay(0.001, decay_st, end_learning_rate=1e-6, power=0.9)
-opt_poly = tf.keras.optimizers.Adam(poly_sche)
-```
-- #### optimizer cosR
-```
-cosine_restarts_decay_step = ((((len(X)//batch_size)+1)*epochs)//7)+1
-cosine_restarts = tf.keras.experimental.CosineDecayRestarts(0.001, cosine_restarts_decay_step, t_mul=2.0, m_mul=0.9, alpha=0,name=None)
-opt_cosr = tf.keras.optimizers.Adam(cosine_restarts)
-```
