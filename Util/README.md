@@ -181,6 +181,21 @@ def generator(x_data, y_data, batch_size):
             y_batch = y_data[i*batch_size: (i+1)*batch_size]
             yield [x_batch[0], x_batch[1]], np.array(y_batch)
 ```
+
+# GPU 메모리 할당 조절 [링크](https://inpages.tistory.com/155)
+```
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if gpus:
+    try:
+        for gpu in gpus:
+            tf.config.experimental.set_memory_growth(gpu, True)
+            logical_gpus = tf.config.experimental.list_logical_devices('GPU')
+            print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
+    except RuntimeError as e:
+    # Memory growth must be set before GPUs have been initialized
+        print(e)
+```
+
 ## Optimizer
 
 - #### optimizer poly
