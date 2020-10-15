@@ -38,10 +38,17 @@ conda info --envs                      # 설치된 anaconda 가상 환경 리스
 source activate py37_tf                # py37_tf 가상 환경을 활성화          or (conda activate py37_tf)
 source deactivate                      # 기본 환경으로 되돌아가기
 ```
-#### jupyter notebook에 가상환경의 kernel 추가
+#### jupyter notebook에 가상환경의 kernel 추가/삭제
+- 가상환경 추가
 ```
 # env-name : 추가할 가상환경의 이름
 # jupyter-display-name : 주피터에서 보여질 이름
 python -m ipykernel install --user --name <env-name> --display-name <jupyter-display-name>
+```
+
+- 가상환경 삭제
+```
+# jupyter-display-name : 주피터에서 보여지는 이름
+jupyter kernelspec uninstall <jupyter-display-name>
 ```
 - 
