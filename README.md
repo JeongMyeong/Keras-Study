@@ -28,3 +28,16 @@
 - optimizer
   - poly
   - cosine restarts
+
+
+# Anaconda Command
+#### conda virtual env 생성
+```
+conda create -n py37_tf python=3.7     # python 3.7 버전을 py37_tf 이름으로 생성한다. python3.7버전이 설치됨.
+conda info --envs                      # 설치된 anaconda 가상 환경 리스트를 나열해줌
+source activate py37_tf                # py37_tf 가상 환경을 활성화          or (conda activate py37_tf)
+source deactivate                      # 기본 환경으로 되돌아가기
+
+
+```
+- 
