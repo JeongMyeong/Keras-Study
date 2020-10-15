@@ -30,7 +30,7 @@
   - cosine restarts
 
 
-# Anaconda Command
+# Ubuntu Command
 #### conda virtual env 생성
 ```
 conda create -n py37_tf python=3.7     # python 3.7 버전을 py37_tf 이름으로 생성한다. python3.7버전이 설치됨.
@@ -51,4 +51,8 @@ python -m ipykernel install --user --name <env-name> --display-name <jupyter-dis
 # jupyter-display-name : 주피터에서 보여지는 이름
 jupyter kernelspec uninstall <jupyter-display-name>
 ```
-- 
+#### alias
+```
+alias file_cnt='ls -l|grep ^-|wc -l'
+source /.bashrc
+```
