@@ -31,6 +31,14 @@
 
 
 # Ubuntu Command
+#### ubuntu python virtual env 생성
+```
+# env_name : 원하는 환경 이름
+python -m virtualenv <env_name>
+cd env_name
+source bin/activate            # 가상환경
+```
+
 #### conda virtual env 생성
 ```
 conda create -n py37_tf python=3.7     # python 3.7 버전을 py37_tf 이름으로 생성한다. python3.7버전이 설치됨.
@@ -56,3 +64,4 @@ jupyter kernelspec uninstall <jupyter-display-name>
 alias file_cnt='ls -l|grep ^-|wc -l'
 source /.bashrc
 ```
+
