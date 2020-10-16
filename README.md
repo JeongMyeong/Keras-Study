@@ -36,7 +36,7 @@
 # env_name : 원하는 환경 이름
 python -m virtualenv <env_name>
 cd env_name
-source bin/activate            # 가상환경
+source bin/activate            # 가상환경 활성화 
 ```
 
 #### conda virtual env 생성
