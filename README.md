@@ -65,3 +65,21 @@ alias file_cnt='ls -l|grep ^-|wc -l'
 source /.bashrc
 ```
 
+# Python parser example
+```{python}
+import argparse
+
+parser = argparse.ArgumentParser(description='Argparse test')
+parser.add_argument('--epoch', type=int,
+                help='an integer for printing repeatable'
+                    )
+
+args = parser.parse_args()
+
+for i in range(args.epoch):
+    print('print number {}'.format(i+1))
+    
+## Terminal run
+python3 parser_test.py -h
+python3 parser_test.py --epoch 5
+```
