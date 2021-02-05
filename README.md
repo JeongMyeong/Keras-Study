@@ -70,6 +70,38 @@ vi /etc/profile      #
 
 ```
 
+### 우분투 딥러닝 환경 설정
+- 인터넷 연결
+- ssh 연결
+- nvidia 설치
+```
+sudo add-apt-repository ppa:graphics-drivers/ppa         # ppa저장소 추가
+sudo apt update 
+apt-cache search nvidia | grep nvidia-driver-450         # 설치 가능한 드라이버 리스트 출력
+sudo apt-get install nvidia-driver-450                   # 설치
+sudo reboot 
+```
+- cuda 설치 ( https://developer.nvidia.com/cuda-toolkit-aRCHIVE )
+  - 사용하려는 라이브러리의 환경에 따라 버전을 보고 설치
+  - 되도록이면 파일을 다운받아 설치하는 것이 nvidia 설치한것이랑 겹치지 않음.
+  - 파일 다운 받아 설치시 nvidia는 이미 설치했으므로 체크 해제가 필요(★)
+  - cuda path 설정
+```
+vi .bashrc
+export PATH=$PATH:/usr/local/cuda-xx.xx/bin                                # xx 는 버전에 맞게 적절히 수정
+export CUDADIR=/usr/local/cuda-xx.xx
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-xx.xx/lib64
+source ~/.bashrc
+sudo reboot
+nvcc -V
+```
+- cudnn 설치 ( https://developer.nvidia.com/rdp/cudnn-archive )
+  - cuda 버전에 맞는 cudnn을 설치
+  - 딥러닝을 할 때는 Runtime Libary만 설치해주면 됨.
+  
+
+
+
 
 # Python parser example
 ```{python}
