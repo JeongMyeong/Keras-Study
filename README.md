@@ -64,6 +64,12 @@ jupyter kernelspec uninstall <jupyter-display-name>
 alias file_cnt='ls -l|grep ^-|wc -l'
 source /.bashrc
 ```
+#### 우분투 전체 계정에 적용
+```
+vi /etc/profile      # 
+
+```
+
 
 # Python parser example
 ```{python}
