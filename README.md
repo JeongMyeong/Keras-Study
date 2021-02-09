@@ -73,7 +73,7 @@ vi /etc/profile      #
 ### 우분투 딥러닝 환경 설정
 - 인터넷 연결
 - ssh 연결
-- nvidia 설치
+- nvidia 설치 [참고 블로그](https://seonghyuk.tistory.com/m/35?category=755641)
 ```
 sudo add-apt-repository ppa:graphics-drivers/ppa         # ppa저장소 추가
 sudo apt update 
