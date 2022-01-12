@@ -121,3 +121,18 @@ for i in range(args.epoch):
 python3 parser_test.py -h
 python3 parser_test.py --epoch 5
 ```
+
+
+# cpu multiprocessing
+
+```
+paths=[]
+import multiprocessing as mp
+from joblib import Parallel, delayed
+import cv2
+def img_load(path):
+    img = cv2.imread(path)
+    return img
+imgs = Parallel(n_jobs=mp.cpu_count(),prefer="threads")(delayed(img_load)(path) for path in tqdm(paths))
+
+```
